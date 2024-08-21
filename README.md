@@ -1,2 +1,2 @@
 # spring-devops
-PRojet de démo pour le cours DEVOPS
+Projet de démo pour le cours DEVOPS
