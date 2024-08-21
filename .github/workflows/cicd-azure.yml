@@ -22,7 +22,7 @@ jobs:
       - name: SpringBoot App
         uses: actions/upload-artifact@v3
         with:
-          name: build-artifact
+          name: app-devops
           path: ${{ github.workspace }}target/*.jar
 
   deploy:
@@ -37,7 +37,7 @@ jobs:
       - name: Deploy To Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'app-devops'
+          app-name: app-devops
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package : '*.jar'
 
