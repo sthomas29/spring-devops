@@ -32,7 +32,7 @@ jobs:
       - name: Download Build Artifact
         uses: actions/download-artifact@v3
         with:
-          name: SpringBoot App
+          name: app-devops
 
       - name: Deploy To Azure
         uses: azure/webapps-deploy@v3
