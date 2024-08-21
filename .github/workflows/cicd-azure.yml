@@ -24,7 +24,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-devops
-          path: ${{ github.workspace }}/target/*.jar
+          path : target/*.jar
+          #path: ${{ github.workspace }}/target/*.jar
 
   deploy:
     needs: build
