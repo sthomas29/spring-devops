@@ -11,7 +11,7 @@
 	<groupId>fr.eni.devops</groupId>
 	<artifactId>app-devops</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>app-devops</name>
 	<description>app-devops</description>
 	<url/>
