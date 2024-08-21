@@ -18,12 +18,13 @@ jobs:
           java-version: '17'
       - name : Build Java
         run: mvn clean install -DskipTests
+        #run : mvn clean package
 
       - name: SpringBoot App
         uses: actions/upload-artifact@v3
         with:
           name: app-devops
-          path: ${{ github.workspace }}target/*.jar
+          path: ${{ github.workspace }}/target/*.jar
 
   deploy:
     needs: build
