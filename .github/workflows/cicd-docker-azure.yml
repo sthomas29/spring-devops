@@ -20,7 +20,7 @@ jobs:
         run: mvn -B package --file pom.xml # mvn clean package
 
       - name: Build Docker Image
-        run: docker build -t thomas4991/app-demo-spring-azure
+        run: docker build -t thomas4991/app-demo-spring-azure .
 
   Login_To_DockerHub:
     runs-on: ubuntu-latest
