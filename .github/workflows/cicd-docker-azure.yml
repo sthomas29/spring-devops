@@ -43,15 +43,15 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: app-demo-spring-azure
+          app-name: app-devops
          # slot-name:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '*.jar'
 
       - name: 'Deploy Docker image'
         run: |
-          az webapp create --resource-group devops-docker-azure --name app-demo-spring-azure --deployment-container-image-name app--demo-spring-azure
-          az webapp config container set --name app-demo-spring-azure --resource-group devops-docker-azure --docker-custom-image-name thomas4991/app-demo-spring-azure:latest
+          az webapp create --resource-group devops-groups --name app-devops --deployment-container-image-name app--demo-spring-azure
+          az webapp config container set --name app-devops --resource-group devops-groups --docker-custom-image-name thomas4991/app-demo-spring-azure:latest
           
           #resource-group: app-demo-spring-azure-rg
           #location: westus2
