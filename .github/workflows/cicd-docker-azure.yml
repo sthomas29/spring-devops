@@ -29,7 +29,7 @@ jobs:
         run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
 
       - name: Push Docker image
-        run : docker push thomas4991/app-demo-spring-azure:latest
+        run : docker push thomas4991/app-demo-spring-azure
 
   Login_To_Azure:
     runs-on: ubuntu-latest
