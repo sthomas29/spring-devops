@@ -50,7 +50,9 @@ jobs:
 
       - name: 'Deploy Docker image'
         run: |
-          az webapp create --resource-group devops-groups --name app-devops --deployment-container-image-name app--demo-spring-azure
+          az appservice plan create --name myDeployAzurePlan --resource-group devops-groups --sku B1 --is-linux
+
+          az webapp create --resource-group devops-groups --name app-devops --plan myDeployAzurePlan --deployment-container-image-name app--demo-spring-azure
           az webapp config container set --name app-devops --resource-group devops-groups --docker-custom-image-name thomas4991/app-demo-spring-azure:latest
           
           #resource-group: app-demo-spring-azure-rg
