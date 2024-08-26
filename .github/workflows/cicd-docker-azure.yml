@@ -31,19 +31,14 @@ jobs:
       - name: Push Docker image
         run : docker push thomas4991/app-demo-spring-azure
 
-  Login_To_Azure:
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Log in to Azure
-        uses: azure/login@v1
-        with:
-        #creds: '{"clientId": "${{ secrets.AZURE_CREDENTIALS }}"'}
-          client-id: ${{ secrets.AZURE_CREDENTIALS }}
-
   Deploy_To_Azure:
     runs-on: ubuntu-latest
     steps:
+      #- name: Log in to Azure
+      #  uses: azure/login@v1
+      #  with:
+        #creds: '{"clientId": "${{ secrets.AZURE_CREDENTIALS }}"'}
+      #    client-id: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
