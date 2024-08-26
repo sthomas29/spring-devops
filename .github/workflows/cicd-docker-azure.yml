@@ -50,6 +50,7 @@ jobs:
 
       - name: 'Deploy Docker image'
         run: |
+          az login -u ${{secrets.AZURE_LOGIN}} -p ${{secrets.AZURE_PASSWORD}}
           az appservice plan create --name myDeployAzurePlan --resource-group devops-groups --sku B1 --is-linux
 
           az webapp create --resource-group devops-groups --name app-devops --plan myDeployAzurePlan --deployment-container-image-name app--demo-spring-azure
