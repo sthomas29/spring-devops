@@ -40,21 +40,22 @@ jobs:
 #        with:
 #          name: app-devops
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: app-devops
-         # slot-name:
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '*.jar'
+#      - name: Deploy to Azure Web App
+#        uses: azure/webapps-deploy@v2
+#        with:
+#          app-name: app-devops
+#         # slot-name:
+#          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+#          package: '*.jar'
 
-      - name: 'Deploy Docker image'
-        run: |
-          az login -u ${{secrets.AZURE_LOGIN}} -p ${{secrets.AZURE_PASSWORD}}
-          az appservice plan create --name myDeployAzurePlan --resource-group devops-groups --sku B1 --is-linux
+     # - name: 'Deploy Docker image'
+     #   run: |
+     #     az login -u ${{secrets.AZURE_LOGIN}} -p ${{secrets.AZURE_PASSWORD}}
+     #     az appservice plan create --name myDeployAzurePlan --resource-group devops-groups --sku B1 --is-linux
+     #     az webapp create --name app-docker-spring --plan myDeployAzurePlan --resource-group devops-groups --deployment-container-image-name nginx:latest
 
-          az webapp create --resource-group devops-groups --name app-devops --plan myDeployAzurePlan --deployment-container-image-name app--demo-spring-azure
-          az webapp config container set --name app-devops --resource-group devops-groups --docker-custom-image-name thomas4991/app-demo-spring-azure:latest
+     #     az webapp create --resource-group devops-groups --name app-devops --plan myDeployAzurePlan --deployment-container-image-name app--demo-spring-azure
+     #     az webapp config container set --name app-devops --resource-group devops-groups --docker-custom-image-name thomas4991/app-demo-spring-azure:latest
           
           #resource-group: app-demo-spring-azure-rg
           #location: westus2
