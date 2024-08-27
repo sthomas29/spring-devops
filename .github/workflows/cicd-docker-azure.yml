@@ -4,7 +4,8 @@ on:
     branches: [ toAzure ]
 
 env:
-  AZURE_WEBAPP_NAME: app-devops  # set this to your application's name
+  AZURE_WEBAPP_NAME: app-demo-docker # set this to your application's name
+  TAG: 1.0
   AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
   JAVA_VERSION: 17
 jobs:
