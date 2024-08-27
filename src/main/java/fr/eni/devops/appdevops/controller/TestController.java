@@ -17,6 +17,8 @@ public class TestController {
         object.put("name", "Formateur");
         object.put("email", "formateur@campus-eni.fr");
         object.put("Date", String.valueOf(LocalDate.now()));
+        object.put("Campus", "ENI-ECOLE");
+
         return object;
 
     }
