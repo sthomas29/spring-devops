@@ -3,33 +3,61 @@ on:
   push:
     branches: [ toAzure ]
 
+env:
+  AZURE_WEBAPP_NAME: app-devops  # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: ${{ github.workspace }} # set this to the path to your web app project
+  JAVA_VERSION: 17
 jobs:
-  Build:
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: dev
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
       - name: Setup JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: 17
+          java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml # mvn clean package
+        run: mvn package --file pom.xml
+      - name: 'Deploy to Azure WebApp'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: '/target/*.jar'
+          #package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/target/*.jar'
 
-      - name: Build Docker Image
-        run: docker build -t thomas4991/app-demo-spring-azure .
-
-      - name: Log in to Docker Hub
-        run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
-
-      - name: Check image locale
-        run : docker image ls
-
-      - name: Push Docker image
-        run : docker push thomas4991/app-demo-spring-azure
+#fonctionnel
+#  Build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      - name: Setup JDK 17
+#        uses: actions/setup-java@v2
+#        with:
+#          java-version: 17
+#          distribution: 'temurin'
+#
+#      - name: Build with Maven
+#        run: mvn -B package --file pom.xml # mvn clean package
+#
+#      - name: Build Docker Image
+#        run: docker build -t thomas4991/app-demo-spring-azure .
+#
+#      - name: Log in to Docker Hub
+#        run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+#
+#      - name: Check image locale
+#        run : docker image ls
+#
+#      - name: Push Docker image
+#        run : docker push thomas4991/app-demo-spring-azure
+# FIN FONCTIONNEL
       #- name: Log in to Azure
       #  uses: azure/login@v1
       #  with:
