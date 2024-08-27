@@ -2,7 +2,7 @@ name: Build and deploy Spring Boot App To Azure From Docker Image
 on:
   push:
     branches:
-      - main
+      - toAzure
     #branches: [ toAzure ]
 
 env:

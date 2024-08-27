@@ -15,7 +15,7 @@ env:
 on:
   push:
     branches:
-      - toAzure
+      - main
 
 permissions:
   contents: 'read'
