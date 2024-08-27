@@ -1,4 +1,4 @@
-name: Build and deploy Spring Boot App To Azure
+name: Build and deploy Spring Boot App To Azure From Docker Image
 on:
   push:
     branches: [ toAzure ]
@@ -19,15 +19,26 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
-
       - name: Build with Maven
         run: mvn package --file pom.xml
+
+      - name: Build Docker Image
+        run: docker build -t thomas4991/${{ env.AZURE_WEBAPP_NAME }} .
+      - name: Log in to Docker Hub
+        run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+
+      - name: Log in to Docker Hub
+        run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
+
+      - name: Push Docker image
+        run : docker push thomas4991/${{ env.AZURE_WEBAPP_NAME }}
+
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          #package: './target/*.jar'
+
           package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/target/*.jar'
 
 #fonctionnel
