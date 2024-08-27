@@ -1,7 +1,9 @@
 name: Build and deploy Spring Boot App To Azure From Docker Image
 on:
   push:
-    branches: [ toAzure ]
+    branches:
+      - main
+    #branches: [ toAzure ]
 
 env:
   AZURE_WEBAPP_NAME: app-demo-docker # set this to your application's name
