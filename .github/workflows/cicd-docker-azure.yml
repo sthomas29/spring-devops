@@ -30,9 +30,6 @@ jobs:
       - name: Log in to Docker Hub
         run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
 
-      - name: Log in to Docker Hub
-        run : echo ${{ secrets.DOCKER_HUB_TOKEN}} | docker login -u ${{secrets.DOCKER_HUB_USERNAME}} --password-stdin
-
       - name: Push Docker image
         run : docker push thomas4991/${{ env.AZURE_WEBAPP_NAME }}
 
