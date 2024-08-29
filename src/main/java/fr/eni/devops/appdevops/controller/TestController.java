@@ -18,6 +18,7 @@ public class TestController {
         object.put("email", "formateur@campus-eni.fr");
         object.put("Date", String.valueOf(LocalDate.now()));
         object.put("Campus", "ENI-ECOLE");
+        object.put("BrancheGit", "toJenkins");
 
         return object;
 
